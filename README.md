@@ -1,1 +1,2 @@
 # etch-a-sketch
+This project is a part of The Odin Project curriculum. It allows users to create a customizable grid where they can draw by clicking and dragging over cells. Users can choose between drawing and erasing modes, as well as select any color using a color picker. The grid size can be adjusted, allowing for different levels of detail in sketches.

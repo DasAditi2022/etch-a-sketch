@@ -21,8 +21,8 @@ body{
 }
 .grid{
     border: 1px solid black;
-    height: 530px;
-    width: 530px;
+    height: 500px;
+    width: 500px;
     display: flex;
     flex-direction: column;
 }
@@ -48,4 +48,9 @@ input{
     border-radius: 20%;
     color: white;
     padding: 2% 4%;
+}
+#colorPicker{
+    background-color: white;
+    border-radius: 20%;
+    
 }
