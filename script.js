@@ -58,9 +58,8 @@ function createRows(n){
 
 //function to display on and off status of a button
 function toggleOnOff(btn,val){
-    if(val==false){
-        btn.style.backgroundColor = "rgb(231, 229, 229)";
-        btn.style.border = "none"
+    if(val==true){
+        btn.style.backgroundColor = "white";
         btn.style.color = "black";
     }  
     else{
