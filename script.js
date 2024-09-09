@@ -4,6 +4,8 @@ const grid = document.querySelector(".grid");
 const drawBtn = document.querySelector("#draw");
 const eraseBtn = document.querySelector("#erase");
 const colorPicker = document.querySelector("#colorPicker");
+const clearBtn = document.querySelector("#clear");
+let size = 16;
 let color = "black"; //default drawing color
 let isDrawing = false;
 
@@ -16,18 +18,22 @@ function createCells(row, n){
         const cell = document.createElement("div");
         cell.setAttribute('class', 'cell');
         row.appendChild(cell);
+
         cell.addEventListener('mousedown', () => { //start drawing
             isDrawing = true;
             cell.style.backgroundColor = color;
+            console.log("mousedown");
         });
 
         cell.addEventListener('mousemove', () => { //only color when dragging
+            console.log("mousemove");
             if (isDrawing) {
                 cell.style.backgroundColor = color;
             }
         });
 
         cell.addEventListener('mouseup', () => { //stop drawing
+            console.log("mouseup");
             isDrawing = false;
         });
 
@@ -52,8 +58,9 @@ function createRows(n){
 
 //function to display on and off status of a button
 function toggleOnOff(btn,val){
-    if(val==true){
-        btn.style.backgroundColor = "white";
+    if(val==false){
+        btn.style.backgroundColor = "rgb(231, 229, 229)";
+        btn.style.border = "none"
         btn.style.color = "black";
     }  
     else{
@@ -82,10 +89,11 @@ gridSize.addEventListener("keydown", ()=>{
             gridSize.value = null;
             return;
         }
+        size = parseInt(gridSize.value);
         while (grid.firstChild) { //need to delete old grid 
             grid.removeChild(grid.firstChild);
         }
-        createRows(parseInt(gridSize.value)); //creating new grid
+        createRows(size); //creating new grid
     }
 });
 
@@ -106,7 +114,25 @@ eraseBtn.addEventListener("click",()=>{
 
 //user clicks to select color
 colorPicker.addEventListener("input", (event) => {
+    if(color==="white"){
+        toggleOnOff(eraseBtn,false);
+        toggleOnOff(drawBtn,true);
+    }
     color = event.target.value;
+
+});
+
+//user clicks to clear the drawing
+clearBtn.addEventListener("click",()=>{
+    while (grid.firstChild) { //need to delete old grid 
+        grid.removeChild(grid.firstChild);
+    }
+    createRows(size); //creating new grid
+})
+
+//disabling the default text selection behavior on grid
+grid.addEventListener('dragstart', (event) => {
+    event.preventDefault(); 
 });
 
 //<-----ACTION FOR SELECTING BUTTONS/INPUTS
